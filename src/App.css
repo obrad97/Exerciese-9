@@ -1,38 +1,121 @@
-.App {
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  max-width: 1440px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+header {
+  height: 70px;
+  background: #14A7DC;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.home img {
+  cursor: pointer;
+  width: 40px;
+}
+
+.cart img {
+  cursor: pointer;
+  width: 40px;
+}
+
+.sorting {
+  display: flex;
+  justify-content: center;
   text-align: center;
+  background: #14A7DC;
+  padding: 20px 0;
+  color: #ffffff;
+  margin-bottom: 50px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sorting select {
+  display: block;
+  outline: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.filter {
+  margin-right: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.store-items {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px;
+
+}
+
+.product {
+  border: 1px solid #14A7DC;
+  border-radius: 10px ;
+  padding: 30px;
   display: flex;
   flex-direction: column;
+}
+
+.product-img{
+  height: 400px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 20px;
+}
+
+.product-name {
+  text-align: center;
+  margin-bottom: 20px;
+  border: 1px solid #14A7DC;
+  padding: 8px;
+}
+
+.category-price {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
+} 
+
+.category {
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.price {
+  font-size: 24px;
+}
+
+.add-to-cart {
+  flex-grow: 1;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.add-to-cart img {
+  width: 20px;
+  margin-right: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.add-to-cart p {
+  font-size: 20px;
+  text-transform: uppercase;
 }
