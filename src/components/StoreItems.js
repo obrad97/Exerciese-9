@@ -1,10 +1,9 @@
-import Item from './Item';
+import { useSelector } from 'react-redux';
+import product from './Product';
 const StoreItems = ({items}) => {
+    const products = useSelector((state)=> state)
     return (
         <div className="store-items">
-            {items.map((item)=> (
-                <Item key={item.id} item={item}/>
-            ))}
         </div>
     )
 }
