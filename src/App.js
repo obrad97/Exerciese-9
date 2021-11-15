@@ -1,24 +1,22 @@
-import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
-import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import './App.css';
 import Header from './components/Header.js';
-import Sorting from "./components/Sorting";
 import StoreItems from "./components/StoreItems";
-import product from "./components/Product";
+import ProductDetails from "./components/ProductDetails";
+import Cart from "./components/Cart";
 
 function App() {
-
+  
   return (
     <div className="container">
       <Router>
         <Header/>
         <Routes>
-        <Route path="/" exact component={StoreItems}/>
-        <Route path="/product/product:id" exact component={product}/>
-        <Route>404 Not Found</Route>
+          <Route path="/" exact element={<StoreItems/>}/>
+          <Route path="/product/:id" exact element={<ProductDetails/>}/>
+          <Route path="/cart" exact element={<Cart/>}/>
+          <Route>404 Not Found</Route>
         </Routes>
-      <main>
-      </main>
       </Router>
     </div>
   );
