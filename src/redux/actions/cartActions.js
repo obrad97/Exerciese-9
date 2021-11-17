@@ -28,3 +28,10 @@ export const removeItem = (item)=> {
         payload: item
     }
 }
+
+export const addFromSessionStorage = (data)=> {
+    return {
+        type: actionTypes.ADD_ITEMS_TO_CART_FROM_SESSION_STORAGE,
+        payload: data
+    }
+}

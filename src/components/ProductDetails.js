@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedProduct, removeSelectedProduct } from "../redux/actions/productActions";
-import addToCartIcon from "../images/iconmonstr-plus-1-240.png";
+import addToCartIcon from "../images/iconmonstr-plus-2-240 (2).png";
 import { addItems } from "../redux/actions/cartActions";
 import { displayModal } from "../redux/actions/modalActions";
 import { useParams } from "react-router";

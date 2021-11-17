@@ -125,10 +125,16 @@ header {
 }
 
 .add-to-cart {
-  flex-grow: 1;
+  width: max-content;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #14A7DC;
+  justify-self: flex-end;
+  align-self: center;
+  margin-top: auto;
+  padding: 20px;
+  color: #ffffff;
 }
 
 .add-to-cart img {
@@ -197,6 +203,9 @@ header {
   align-items: center;
   text-transform: uppercase;
   font-size: 28px;
+  background: #14A7DC;
+  color: white;
+  padding: 20px;
 }
 
 .rating {
@@ -328,6 +337,7 @@ header {
 
 .product-title-container {
   margin-bottom: 30px;
+  text-align: center;
 }
 
 .modal-btn-container {
@@ -347,4 +357,45 @@ header {
 
 .close-btn {
   margin-right: 20px;
+}
+
+@media only screen and (max-width: 1100px) {
+  
+  .container {
+    padding: 0 20px;
+  }
+
+  .store-items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-details {
+    text-align: center;
+  }
+
+}
+
+@media only screen and (max-width: 800px) {
+  .product-details {
+    width: 100%;
+  }
+
+  .modal {
+    padding: 0 20px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .price-category {
+    font-size: 20px;
+  }
+
+  .rating {
+    font-size: 23px;
+  }
+
+  .product-details-add-to-cart p {
+    font-size: 23px;
+  }
 }

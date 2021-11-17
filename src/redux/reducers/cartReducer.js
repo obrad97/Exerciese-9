@@ -41,6 +41,13 @@ export const cartReducer = (state = {...initialState}, action)=> {
                 sum: state.sum -= removed.count * removed.price,
                 totalItems: state.totalItems - removed.count
             }
+        case actionTypes.ADD_ITEMS_TO_CART_FROM_SESSION_STORAGE:
+            return {
+                ...state,
+                items: action.payload.items,
+                sum: action.payload.sum,
+                totalItems: action.payload.totalItems
+            }
         default:
             return state
     }

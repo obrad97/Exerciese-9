@@ -6,12 +6,22 @@ import ProductDetails from "./components/ProductDetails";
 import Cart from "./components/Cart";
 import Modal from "./components/Modal"
 import Error from "./components/Error";
-import { useEffect } from "react";
+import { useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addFromSessionStorage } from "./redux/actions/cartActions";
 
 function App() {
-
-  
-  
+  const state = useSelector(state=> state);
+  const dispatch = useDispatch()
+    useEffect(()=> {
+    const sessionData = sessionStorage.getItem("cart");
+    if (sessionData != null) {
+      dispatch(addFromSessionStorage(JSON.parse(sessionData)))
+    }
+  },[])
+  useEffect(()=> {
+    sessionStorage.setItem("cart", JSON.stringify(state.cartItems))
+  },[state.cartItems])
   return (
     <div className="container">
       <Router>

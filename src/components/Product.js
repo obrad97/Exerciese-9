@@ -1,6 +1,6 @@
 import { useSelector,useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import addToCartIcon from "../images/iconmonstr-plus-1-240.png";
+import addToCartIcon from "../images/iconmonstr-plus-2-240 (2).png";
 import { addItems} from "../redux/actions/cartActions";
 import { displayModal } from "../redux/actions/modalActions";
 
