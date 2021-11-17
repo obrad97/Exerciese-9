@@ -1,11 +1,10 @@
 import { useSelector,useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useEffect, useState} from "react";
 import addToCartIcon from "../images/iconmonstr-plus-1-240.png";
-import { addItems } from "../redux/actions/cartActions";
+import { addItems} from "../redux/actions/cartActions";
+import { displayModal } from "../redux/actions/modalActions";
 
 const Product = () => {
-    const [item, setItem] = useState(false);
     const products = useSelector((state)=> state.allProducts.showProducts);
     const cart = useSelector((state) => state.cartItems.items);
     const dispatch = useDispatch();
@@ -13,24 +12,22 @@ const Product = () => {
     const addToCart = (index) => {
         const item = products.find((product)=> Number(product.id) === Number(index))
         dispatch(addItems(item))
-        setItem(true)
     }
 
-    const checkIfAdded = (index) => {
+    const checkIfAdded = (index, title) => {
         const item = cart.findIndex((item)=> Number(item.id) === Number(index));
         let result;
         if (item >= 0){
             result = <h2>ITEM IS IN CART</h2>;
         } else {
-            result = <p onClick={()=> {addToCart(index)}}><img src={addToCartIcon} alt="Add to cart icon" /> add to cart</p>;
+            result = <p onClick={()=>{
+                addToCart(index)
+                dispatch(displayModal(title))
+            }}><img src={addToCartIcon} alt="Add to cart icon" /> add to cart</p>;
         }
 
         return result;
     } 
-
-    useEffect(()=> {
-        setItem(false);
-    },[item]) 
 
     return (
         <>
@@ -47,7 +44,7 @@ const Product = () => {
                         </div>
                     </Link>
                     <div className="add-to-cart">
-                        {checkIfAdded(id)}
+                        {checkIfAdded(id, title)}
                     </div>
             </div>
             )

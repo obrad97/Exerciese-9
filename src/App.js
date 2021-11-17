@@ -4,8 +4,13 @@ import Header from './components/Header.js';
 import StoreItems from "./components/StoreItems";
 import ProductDetails from "./components/ProductDetails";
 import Cart from "./components/Cart";
+import Modal from "./components/Modal"
+import Error from "./components/Error";
+import { useEffect } from "react";
 
 function App() {
+
+  
   
   return (
     <div className="container">
@@ -15,8 +20,9 @@ function App() {
           <Route path="/" exact element={<StoreItems/>}/>
           <Route path="/product/:id" exact element={<ProductDetails/>}/>
           <Route path="/cart" exact element={<Cart/>}/>
-          <Route>404 Not Found</Route>
+          <Route path="/*" exact element={<Error/>}/>
         </Routes>
+        <Modal/>
       </Router>
     </div>
   );

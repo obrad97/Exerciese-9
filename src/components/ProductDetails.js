@@ -1,18 +1,20 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedProduct, removeSelectedProduct } from "../redux/actions/productActions";
 import addToCartIcon from "../images/iconmonstr-plus-1-240.png";
 import { addItems } from "../redux/actions/cartActions";
+import { displayModal } from "../redux/actions/modalActions";
 import { useParams } from "react-router";
+import Error from "./Error";
 
 const ProductDetails = () => {
     const product = useSelector((state) => state.product);
     const cart = useSelector((state) => state.cartItems.items);
-    const [added, setAdded] = useState(false);
     const { id } = useParams();
     const {image, title, price, category, description, rating} = product;
     const dispatch = useDispatch();
+    const item = cart.findIndex((item)=> Number(item.id) === Number(id));
 
     const fetchProductDetails = async (id) => {
         const response = await axios
@@ -25,20 +27,7 @@ const ProductDetails = () => {
 
     const addToCart = () => {
         dispatch(addItems(product));
-        setAdded(true);
     }
-
-    const checkIfAdded = () => {
-        const item = cart.findIndex((item)=> Number(item.id) === Number(id));
-        let result;
-        if (item >= 0){
-            result = <h2>ITEM IS IN CART</h2>;
-        } else {
-            result = <p onClick={()=> {addToCart()}}><img src={addToCartIcon} alt="Add to cart icon" /> add to cart</p>;
-        }
-
-        return result;
-    }  
 
     useEffect(()=> {
         if(id && id !== "") fetchProductDetails(id);
@@ -46,10 +35,6 @@ const ProductDetails = () => {
             dispatch(removeSelectedProduct());
         } 
     },[id])
-
-    useEffect(()=> {
-        checkIfAdded()
-    },[added])
     
     if (product) {
         return (
@@ -69,10 +54,15 @@ const ProductDetails = () => {
                     <p>Rating: {rating ? rating.rate : rating}</p>
                 </div>
                 <div className="product-details-add-to-cart">
-                    {checkIfAdded()}
+                    {item >= 0 ? <h2>ITEM IS IN CART</h2> : <p onClick={()=> {
+                        addToCart() 
+                        dispatch(displayModal(title))}}>
+                                                            <img src={addToCartIcon} alt="Add to cart icon" /> add to cart</p>}
                 </div>
             </div>
         )
+    } else {
+        <Error/>
     }
 }
 
